@@ -1,0 +1,12 @@
+queryset = ModelName.objects.all();
+--------   --------- ------- .get()
+                             .filter()
+                             .exclude()
+
+queryset == variable that holds response      
+
+ModelName == Model Name
+
+Objects == Model objects atribute
+
+all() == Method
