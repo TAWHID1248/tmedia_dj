@@ -3,6 +3,9 @@
 {% block content %}
 <h1>Home page templates</h1>
 
+
+
+
 <style>
     .home-container {
         display: grid;
@@ -33,7 +36,10 @@
         <a href={% url 'room-create' %}> create room</a>
         {% for room in rooms %}
         <div>
-            <a href={% url 'room-update' room.id %} >Edit</a> | <a href={% url 'room-delete' room.id %} >Delete</a> | <span>@{{ room.host.username }}</span>
+            {% if request.user == room.host %}
+            <a href={% url 'room-update' room.id %} >Edit</a> | <a href={% url 'room-delete' room.id %} >Delete</a> |
+            {% endif %}
+             <span>@{{ room.host.username }}</span>
             <a href="{% url 'room' room.id %}"><h2>{{room.id}} -- {{ room.name }}</h2></a>
             <small>{{ room.topic.name }}</small>
             <hr>
