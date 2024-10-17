@@ -2,8 +2,37 @@
 
 {% block content %}
 
-<h1>{{room.name}}</h1>
-<h5>{{room.description}}</h5>
+
+
+<div>
+    <h1>{{room.name}}</h1>
+    <h5>{{room.description}}</h5>
+</div>
+
+
+
+<div class='comment-wrapper'>
+    <h3>Conversation</h3>
+    <hr>
+
+ {% for message in room_messages %}
+        <div>
+            <p> @{{message.user}} | {{message.created|timesince}}</p>
+            <p>{{message.body}}<p>
+            <hr>
+        </div>
+    {% endfor %} 
+</div>
+
+{% if request.user.is_authenticated %}
+<div class='comment-form'>
+    <form method='POST' action=''>
+        {% csrf_token %}
+
+        <input type='text' name='body' placeholder='Share your thoughts' />
+    </form>
+</div>
+{% endif %}
 
 {% endblock content %}
 
